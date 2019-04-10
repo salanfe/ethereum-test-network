@@ -16,7 +16,7 @@ to run the container
 
 ## Accounts
 
-### sealing accounts
+### sealing account
 |account | address | private key |
 | -|-|-|
 | 1 |0x500a072dfa63f6df33a7e3c3a1bac649fc8ffee9| 0x30651a022e175fa0e765ddbe31b55706ce117774e8e873e8cd547647aa966587|
@@ -38,8 +38,8 @@ to run the container
 
 ## About
 
-The genesis file have been created with geth tool `puppeth`. All values can be edited by hand. However, the careful edditing `extraData` as it contains the sealers' addresses. `password.txt` holds geth coinbase account password, that is required for unlocking and mining. All geth rpc api are exposed and can be consumed with any web3 library, postman, or any jsonrpc request.
+The genesis file has been created with geth tool `puppeth`. All values can be edited by hand. However, be careful edditing `extraData` as it contains the sealer's address. `password.txt` holds geth coinbase/sealer's account password, that is required for unlocking and mining. All geth rpc/ws api are exposed and can be consumed with any web3 library, postman, or any jsonrpc request.
 
 ## Remix
 
-Remix https://remix.ethereum.org can be used as such to interact with this dev network. Simply make sure to expose the port 8545 from the docker container to your local machine with `--network host` in the docker command.
+Remix https://remix.ethereum.org can be used to interact with this dev network. Simply make sure to expose the port 8545 from the docker container to your local machine with `--network host` in the docker command.
