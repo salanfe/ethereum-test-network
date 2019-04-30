@@ -1,0 +1,108 @@
+version: "3"
+services:
+  geth-bootnode:
+    hostname: geth-bootnode
+    environment:
+      - nodekeyhex=917c1ba6d682040964b0a278e742cade037c186cafba7020f0d5b4955c0684e6 #Needs to be fix, so that the miners know the resulting enode id
+    build:
+      context: ./bootnode
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.100 # The miners need to know the IP address later on
+
+  dev-net-stats:
+    hostname: dev-net-stats
+    environment:
+      - WS_SECRET=ethstatssecret
+    build:
+      context: ./netstats
+    container_name: netstats
+    ports:
+      - 3000:3000
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.104
+
+  geth-dev-miner-1:
+    hostname: geth-dev-miner-1
+    depends_on:
+      - geth-bootnode
+      - dev-net-stats
+    environment:
+      - nodeName=miner1
+      - address=0x4f1809cf76a8946d615cb546271cae3ea36328ed #derived from the private key which is passed in the args
+      - bootnodeId=463eba4d79213c82f2b125beafe84502b0e579ee828e89e374872c17c112c232ce48ecc536e5d126c5c9d8b6c8f46e87f484b5dcbe3582ffb428852deeb4f66b #derived from the nodekeyhex of the bootnode
+      - bootnodeIp=172.25.0.100
+      - ethstatsIp=172.25.0.104
+      - ethstatsSecret=ethstatssecret
+    build:
+      context: ./miner
+      args:
+        privatekey: be4b83a3bff4fd9ec8b060e68fab18a2c0f78ac3943865931dcb73e6303dc48c # Please don't do something like this in production, okay?
+        password: coinbasepassword
+    container_name: geth-miner-1
+    ports:
+      - 8501:8545
+      - 8601:8546
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.101 # The monitor needs to know this address
+
+  geth-dev-miner-2:
+    hostname: geth-dev-miner-2
+    depends_on:
+      - geth-bootnode
+      - dev-net-stats
+    environment:
+      - nodeName=miner2
+      - address=0x7d4684e8f1827832f13124b13874b00890a8a83f #derived from the private key which is passed in the args
+      - bootnodeId=463eba4d79213c82f2b125beafe84502b0e579ee828e89e374872c17c112c232ce48ecc536e5d126c5c9d8b6c8f46e87f484b5dcbe3582ffb428852deeb4f66b #derived from the nodekeyhex of the bootnode
+      - bootnodeIp=172.25.0.100
+      - ethstatsIp=172.25.0.104
+      - ethstatsSecret=ethstatssecret
+    build:
+      context: ./miner
+      args:
+        privatekey: 6342956d853c618c0c029fcb900c2b551e255c4e765a942b34880e4bedcfb188
+        password: coinbasepassword
+    container_name: geth-miner-2
+    ports:
+      - 8502:8545
+      - 8602:8546
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.102
+
+  geth-dev-miner-3:
+    hostname: geth-dev-miner-3
+    depends_on:
+      - geth-bootnode
+      - dev-net-stats
+    environment:
+      - nodeName=miner3
+      - address=0x6206d535d4af9bd3327167027dbb2fffa070fc68 #derived from the private key which is passed in the args
+      - bootnodeId=463eba4d79213c82f2b125beafe84502b0e579ee828e89e374872c17c112c232ce48ecc536e5d126c5c9d8b6c8f46e87f484b5dcbe3582ffb428852deeb4f66b #derived from the nodekeyhex of the bootnode
+      - bootnodeIp=172.25.0.100
+      - ethstatsIp=172.25.0.104
+      - ethstatsSecret=ethstatssecret
+    build:
+      context: ./miner
+      args:
+        privatekey: 24fb5370826be6a62e1ee2c9f2ea3ed25cb4ac47c1c2d647b2c788e6cafcf51a
+        password: coinbasepassword
+    container_name: geth-miner-3
+    ports:
+      - 8503:8545
+      - 8603:8646
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.103
+
+  
+
+networks:
+  chainnet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24

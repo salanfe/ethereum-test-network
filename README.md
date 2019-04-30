@@ -1,31 +1,30 @@
 # Ethereum-Geth Test Environment
 
-self contained ethereum development network. This is very much like the truffle ganache app. However this allows to test against the real geth client. The difference over the `geth --dev` option is that the set of development accounts are predefined and fixed, as they are defined in the genesis file.
-
-Adding a persistant volume to this docker and stop mining, once some transactions have been processed, can also be used to have a static blockchain to test against.
+Ethereum development network
 
 ## Docker
 
-to build the image
+    $ sudo docker-compose up
 
-    $ sudo docker build -t gethpoa .
+## EthStats
 
-to run the container
-
-    $ sudo docker run -it --network host gethpoa
+Dashboard on `localhost:3000`
 
 ## Accounts
 
-### sealing account
-|account | address | private key |
+### sealing accounts
+
+| account | address | private key |
 | -|-|-|
-| 1 |0x500a072dfa63f6df33a7e3c3a1bac649fc8ffee9| 0x30651a022e175fa0e765ddbe31b55706ce117774e8e873e8cd547647aa966587|
+| 1 | 0x4f1809cf76a8946d615cb546271cae3ea36328ed | 0xbe4b83a3bff4fd9ec8b060e68fab18a2c0f78ac3943865931dcb73e6303dc48c |
+| 2 | 0x7d4684e8f1827832f13124b13874b00890a8a83f | 0x6342956d853c618c0c029fcb900c2b551e255c4e765a942b34880e4bedcfb188 |
+| 3 | 0x6206d535d4af9bd3327167027dbb2fffa070fc68 | 0x24fb5370826be6a62e1ee2c9f2ea3ed25cb4ac47c1c2d647b2c788e6cafcf51a |
 
 ### development accounts
 
 | account | address | private key |
 |-|-|-|
-| 1 | 0x362bfe247396ecc09d30091e3c5ca2d5f527bd06 | 0xf1602f6e85c026028f9a7c67012cc7dbbade2cbf34447ca66f9196b0ebb0dc6f|
+| 1 | 0x362bfe247396ecc09d30091e3c5ca2d5f527bd06 | 0xf1602f6e85c026028f9a7c67012cc7dbbade2cbf34447ca66f9196b0ebb0dc6f |
 | 2 | 0xca1c753ed477ac905f4ec6c9851bc81f0fb41512 | 0xaf304322d63ee810ced35c603a98b38fbe2414e7ab4ba9438fef9aed340e7d1c |
 | 3 | 0x61cfb9bc71d6f2747598db3f767b4b8967f029ab | 0xb0386e69d886de4f3d3fdef43e783c746ac995d56a4199cc3002eb5b512dc3f7 |
 | 4 | 0x5b8398f4ab4dd5d9a622ee7ce5fe780cb32924f8 | 0x34a887d54c67f152a4d2262c0242b6fe1f259f40d3eaa36f6c784357f56d4491 |
@@ -36,10 +35,10 @@ to run the container
 | 9 | 0xb9590e210ecbcb4a61cca006b2aed5343fd78662 | 0x10672a664e2d7527a56e10758f144dc8c2f7c34c8ef836e9ef7d0c9c8eedbd44 |
 | 10 | 0x3724809bff55562a3d28fcd4e3f98198f1cdc0f0 | 0x4a252160538248f3224d8d4377c01209d6220e63f800a0316997933706742849 |
 
-## About
+## Nodes
 
-The genesis file has been created with geth tool `puppeth`. All values can be edited by hand. However, be careful edditing `extraData` as it contains the sealer's address. `password.txt` holds geth coinbase/sealer's account password, that is required for unlocking and mining. All geth rpc/ws api are exposed and can be consumed with any web3 library, postman, or any jsonrpc request.
-
-## Remix
-
-Remix https://remix.ethereum.org can be used to interact with this dev network. Simply make sure to expose the port 8545 from the docker container to your local machine with `--network host` in the docker command.
+| name | account | rpc port | ws port |
+|-|-|-|
+| miner1 | 0x4f1809cf76a8946d615cb546271cae3ea36328ed | 8501 | 8601 |
+| miner2 | 0x7d4684e8f1827832f13124b13874b00890a8a83f | 8502 | 8602 |
+| miner3 | 0x6206d535d4af9bd3327167027dbb2fffa070fc68 | 8503 | 8603 |
