@@ -38,7 +38,7 @@ Dashboard on `localhost:3000`
 ## Nodes
 
 | name | account | rpc port | ws port |
-|-|-|-|
+|-|-|-|-|
 | miner1 | 0x4f1809cf76a8946d615cb546271cae3ea36328ed | 8501 | 8601 |
 | miner2 | 0x7d4684e8f1827832f13124b13874b00890a8a83f | 8502 | 8602 |
 | miner3 | 0x6206d535d4af9bd3327167027dbb2fffa070fc68 | 8503 | 8603 |
