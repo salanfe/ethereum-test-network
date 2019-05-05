@@ -17,8 +17,8 @@ ENV ethstatsSecret=""
 
 ENTRYPOINT geth \
 --identity $nodeName \
---rpc --rpcaddr "0.0.0.0" --rpcapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3" --rpcvhosts "*" --rpccorsdomain "*" \
---ws --wsaddr "0.0.0.0" --wsapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3" --wsorigins "*" \
+--rpc --rpcaddr "0.0.0.0" --rpcapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3,clique" --rpcvhosts "*" --rpccorsdomain "*" \
+--ws --wsaddr "0.0.0.0" --wsapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3,clique" --wsorigins "*" \
 --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" \
 --syncmode=full --gcmode archive --gasprice "0" \
 --etherbase $address --unlock $address --password ~/.accountpassword --mine --allow-insecure-unlock \
