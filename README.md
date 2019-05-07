@@ -42,3 +42,35 @@ Dashboard on `localhost:3000`
 | miner1 | 0x4f1809cf76a8946d615cb546271cae3ea36328ed | 8501 | 8601 |
 | miner2 | 0x7d4684e8f1827832f13124b13874b00890a8a83f | 8502 | 8602 |
 | miner3 | 0x6206d535d4af9bd3327167027dbb2fffa070fc68 | 8503 | 8603 |
+
+## Upgrading an exisiting network to Constantinople
+
+pre-fork system:
+
+before forking to constantinople, the config part of the genesis file should look something like this.
+
+```json
+"config": {
+        "chainId": 6464,
+        "homesteadBlock": 1,
+        "eip150Block": 2,
+        "eip150Hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "eip155Block": 3,
+        "eip158Block": 3,
+        "byzantiumBlock": 4,
+        "clique": {
+            "period": 1,
+            "epoch": 30000
+        }
+    }
+```
+
+and let's say the current blockchain height is 135'900 and we want to setup the fork at block 150'000.
+
+for every geth client on the private network do the following steps:
+
+1. stop your geth node
+2. update geth to a version that supports constantinople (v1.8.22 or higher)
+3. edit the genesis file with `"constantinopleBlock": 150000`
+4. load the updated genesis file into geth with `$ geth init genesis.json`
+5. restart your node
