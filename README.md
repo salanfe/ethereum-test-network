@@ -45,6 +45,10 @@ Dashboard on `localhost:3000`
 
 ## Upgrading an exisiting network to Constantinople
 
+context:
+* https://blog.ethereum.org/2019/02/22/ethereum-constantinople-st-petersburg-upgrade-announcement/
+* https://github.com/ethereum/go-ethereum/releases/tag/v1.8.22
+
 pre-fork system:
 
 before forking to constantinople, the config part of the genesis file should look something like this.
