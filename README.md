@@ -4,7 +4,13 @@ Ethereum development network
 
 ## Docker
 
-    $ sudo docker-compose up
+    $ docker-compose up
+
+to reset state
+
+    $ docker-compose down
+
+(https://stackoverflow.com/questions/32612650/how-to-get-docker-compose-to-always-re-create-containers-from-fresh-images)
 
 ## EthStats
 
