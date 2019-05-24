@@ -84,3 +84,7 @@ for every geth client on the private network do the following steps:
 3. edit the genesis file with `"constantinopleBlock": 150000`
 4. load the updated genesis file into geth with `$ geth init genesis.json`
 5. restart your node
+
+credits:
+
+* inspired by https://github.com/javahippie/geth-dev
