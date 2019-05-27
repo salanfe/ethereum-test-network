@@ -1,4 +1,5 @@
-FROM ethereum/client-go
+ARG tag_version
+FROM ethereum/client-go:${tag_version}
 
 ARG password
 ARG privatekey
@@ -22,5 +23,5 @@ ENTRYPOINT geth \
 --ws --wsaddr "0.0.0.0" --wsapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3,clique" --wsorigins "*" \
 --bootnodes "enode://$bootnodeId@$bootnodeIp:30301" \
 --syncmode=full --gcmode archive --gasprice "0" \
---etherbase $address --unlock $address --password ~/.accountpassword --mine --allow-insecure-unlock \
+--etherbase $address --unlock $address --password ~/.accountpassword --mine \
 --ethstats "$nodeName:$ethstatsSecret@$ethstatsIp:3000"

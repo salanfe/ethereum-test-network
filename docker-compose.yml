@@ -38,6 +38,7 @@ services:
     build:
       context: ./miner
       args:
+        tag_version: ${GETH_TAG_VERSION}
         privatekey: be4b83a3bff4fd9ec8b060e68fab18a2c0f78ac3943865931dcb73e6303dc48c # Please don't do something like this in production, okay?
         password: coinbasepassword
     container_name: geth-miner-1
@@ -63,6 +64,7 @@ services:
     build:
       context: ./miner
       args:
+        tag_version: ${GETH_TAG_VERSION}
         privatekey: 6342956d853c618c0c029fcb900c2b551e255c4e765a942b34880e4bedcfb188
         password: coinbasepassword
     container_name: geth-miner-2
@@ -88,6 +90,7 @@ services:
     build:
       context: ./miner
       args:
+        tag_version: ${GETH_TAG_VERSION}
         privatekey: 24fb5370826be6a62e1ee2c9f2ea3ed25cb4ac47c1c2d647b2c788e6cafcf51a
         password: coinbasepassword
     container_name: geth-miner-3

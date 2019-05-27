@@ -12,6 +12,14 @@ to reset state
 
 (https://stackoverflow.com/questions/32612650/how-to-get-docker-compose-to-always-re-create-containers-from-fresh-images)
 
+### geth version
+
+Tag of geth version variable `GETH_TAG_VERSION` is defined in `.env`. Value can be overwritten by defining the variable when running docker, e.g.
+
+    $ GETH_TAG_VERSION=v1.8.25 docker-compose up --build
+
+
+
 ## EthStats
 
 Dashboard on `localhost:3000`
@@ -85,6 +93,6 @@ for every geth client on the private network do the following steps:
 4. load the updated genesis file into geth with `$ geth init genesis.json`
 5. restart your node
 
-credits:
+## credits:
 
 * inspired by https://github.com/javahippie/geth-dev
