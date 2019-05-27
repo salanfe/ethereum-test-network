@@ -6,6 +6,8 @@ services:
       - nodekeyhex=917c1ba6d682040964b0a278e742cade037c186cafba7020f0d5b4955c0684e6 #Needs to be fix, so that the miners know the resulting enode id
     build:
       context: ./bootnode
+      args:
+        tag_version: ${GETH_TAG_VERSION}
     networks:
       chainnet:
         ipv4_address: 172.25.0.100 # The miners need to know the IP address later on
