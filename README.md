@@ -1,24 +1,44 @@
 # Ethereum-Geth Test Environment
 
-Ethereum development network
+Ethereum Development Network
 
 ## Docker
 
-    $ docker-compose up
+```shell
+$ docker-compose up
+```
 
 to reset state
 
-    $ docker-compose down
+```sehll
+$ docker-compose down
+```
 
 (https://stackoverflow.com/questions/32612650/how-to-get-docker-compose-to-always-re-create-containers-from-fresh-images)
+
+### IPC
+
+a volume is mapped to `/tmp` for geth IPCs:
+
+* `/tmp/miner1.ipc`
+* `/tmp/miner2.ipc`
+* `/tmp/miner3.ipc`
+
+docker writes in `/tmp` as root, which can cause troubles. To change owner:
+
+```shell
+$ sudo chown $USER:$USER /tmp/miner1.ipc /tmp/miner2.ipc /tmp/miner3.ipc
+```
 
 ### geth version
 
 Tag of geth version variable `GETH_TAG_VERSION` is defined in `.env`. Value can be overwritten by defining the variable when running docker, e.g.
 
-    $ GETH_TAG_VERSION=v1.8.25 docker-compose up --build
+```shell
+$ GETH_TAG_VERSION=v1.8.25 docker-compose up --build
+```
 
-
+by default, `stable` is used.
 
 ## EthStats
 
