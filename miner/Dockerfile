@@ -18,6 +18,7 @@ ENV ethstatsSecret=""
 
 ENTRYPOINT geth \
 --identity $nodeName \
+--ipcpath /tmp/${nodeName}.ipc \
 --networkid 6464 \
 --rpc --rpcaddr "0.0.0.0" --rpcapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3,clique" --rpcvhosts "*" --rpccorsdomain "*" \
 --ws --wsaddr "0.0.0.0" --wsapi "admin,db,debug,eth,miner,net,personal,shh,txpool,web3,clique" --wsorigins "*" \

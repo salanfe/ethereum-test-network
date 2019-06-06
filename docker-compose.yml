@@ -47,6 +47,8 @@ services:
     ports:
       - 8501:8545
       - 8601:8546
+    volumes:
+      - /tmp:/tmp
     networks:
       chainnet:
         ipv4_address: 172.25.0.101 # The monitor needs to know this address
@@ -73,6 +75,8 @@ services:
     ports:
       - 8502:8545
       - 8602:8546
+    volumes:
+      - /tmp:/tmp
     networks:
       chainnet:
         ipv4_address: 172.25.0.102
@@ -99,11 +103,11 @@ services:
     ports:
       - 8503:8545
       - 8603:8646
+    volumes:
+      - /tmp:/tmp
     networks:
       chainnet:
         ipv4_address: 172.25.0.103
-
-  
 
 networks:
   chainnet:
